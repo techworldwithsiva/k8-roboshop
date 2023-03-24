@@ -10,7 +10,7 @@ spec:
   containers:
   - name: catalogue
     imagePullPolicy: Always
-    image: techworldwithsiva/catalogue:k8
+    image: techworldwithsiva/catalogue:k8-1
     resources:
       requests:
         cpu: "100m"
