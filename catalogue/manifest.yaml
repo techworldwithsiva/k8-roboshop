@@ -18,6 +18,7 @@ spec:
   - name: catalogue
     imagePullPolicy: Always
     image: techworldwithsiva/catalogue:v1
+    imagePullPolicy: Always
     envFrom:
     - configMapRef:
         name: catalogue-config
