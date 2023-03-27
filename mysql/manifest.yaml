@@ -1,21 +1,4 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-config
-data:
-  
-  MYSQL_DATABASE: "cities"
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: mysql-secret
-type: Opaque
-data:
-  MYSQL_USER: c2hpcHBpbmc=
-  MYSQL_PASSWORD: c2VjcmV0
-  MYSQL_ROOT_PASSWORD: cm9vdDEyMw==
+
 ---
 apiVersion: v1
 kind: Pod
@@ -28,19 +11,7 @@ spec:
   containers:
   - name: mysql
     imagePullPolicy: Always
-    image: techworldwithsiva/mysql:k8
-    args: ["--secure-auth"]
-    env:
-    - name: MYSQL_ROOT_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: mysql-secret
-          key: MYSQL_ROOT_PASSWORD
-    envFrom:
-    - configMapRef:
-        name: mysql-config
-    - secretRef:
-        name: mysql-secret
+    image: techworldwithsiva/mysql:v1
     ports:
       - containerPort: 3306
     resources:
@@ -61,5 +32,5 @@ spec:
     tier: db
   ports:
     - protocol: TCP
-      port: 80
+      port: 3306
       targetPort: 3306
