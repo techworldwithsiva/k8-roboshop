@@ -14,13 +14,6 @@ spec:
     image: techworldwithsiva/mysql:v1
     ports:
       - containerPort: 3306
-    resources:
-      requests:
-        cpu: "100m"
-        memory: "128Mi"
-      limits:
-        cpu: "100m"
-        memory: "128Mi"
 ---
 apiVersion: v1
 kind: Service
