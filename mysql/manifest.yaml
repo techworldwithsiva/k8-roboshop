@@ -27,7 +27,7 @@ spec:
   containers:
   - name: mysql
     imagePullPolicy: Always
-    image: techworldwithsiva/mysql:v1
+    image: techworldwithsiva/mysql:k8
     envFrom:
     - configMapRef:
         name: mysql-config
