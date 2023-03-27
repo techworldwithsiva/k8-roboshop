@@ -29,6 +29,7 @@ spec:
   - name: mysql
     imagePullPolicy: Always
     image: techworldwithsiva/mysql:k8
+    args: ["--secure-auth"]
     envFrom:
     - configMapRef:
         name: mysql-config

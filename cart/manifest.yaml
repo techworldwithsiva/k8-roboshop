@@ -16,7 +16,7 @@ metadata:
     tier: app
 spec:
   containers:
-  - name: catalogue
+  - name: cart
     imagePullPolicy: Always
     image: techworldwithsiva/cart:v1
     envFrom:
