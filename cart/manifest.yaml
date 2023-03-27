@@ -18,7 +18,7 @@ spec:
   containers:
   - name: cart
     imagePullPolicy: Always
-    image: techworldwithsiva/cart:v1
+    image: techworldwithsiva/cart:k8
     envFrom:
     - configMapRef:
         name: cart-config
