@@ -359,7 +359,7 @@ function calcTax(total) {
 
 function getProduct(sku) {
     return new Promise((resolve, reject) => {
-        request('http://' + catalogueHost + ':8080/product/' + sku, (err, res, body) => {
+        request( catalogueHost + '/product/' + sku, (err, res, body) => {
             if(err) {
                 reject(err);
             } else if(res.statusCode != 200) {
