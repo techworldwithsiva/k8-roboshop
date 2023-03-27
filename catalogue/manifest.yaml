@@ -1,5 +1,12 @@
 ---
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalogue-config
+data:
+  MONGO_URL: "mongodb://mongodb:80/catalogue"
+---
+apiVersion: v1
 kind: Pod
 metadata:
   name: catalogue
@@ -10,7 +17,10 @@ spec:
   containers:
   - name: catalogue
     imagePullPolicy: Always
-    image: techworldwithsiva/catalogue:k8-1
+    image: techworldwithsiva/catalogue:v1
+    envFrom:
+    - configMapRef:
+        name: catalogue-config
     resources:
       requests:
         cpu: "100m"
@@ -22,13 +32,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: catalogue-service
+  name: catalogue
 spec:
   selector:
     name: catalogue
     tier: app
   ports:
     - protocol: TCP
-      port: 8080
+      port: 80
       targetPort: 8080
 
