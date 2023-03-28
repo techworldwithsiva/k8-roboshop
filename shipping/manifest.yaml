@@ -24,11 +24,11 @@ spec:
         name: shipping-config
     resources:
       requests:
-        cpu: "100m"
-        memory: "128Mi"
-      limits:
         cpu: "200m"
         memory: "256Mi"
+      limits:
+        cpu: "200m"
+        memory: "512Mi"
 ---
 apiVersion: v1
 kind: Service
