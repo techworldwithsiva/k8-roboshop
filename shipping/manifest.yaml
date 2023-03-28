@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shipping-config
+data:
+  CART_ENDPOINT: "cart"
+  DB_HOST: "mysql"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shipping
+  labels:
+    name: shipping
+    tier: app
+spec:
+  containers:
+  - name: shipping
+    imagePullPolicy: Always
+    image: techworldwithsiva/shipping:k8
+    envFrom:
+    - configMapRef:
+        name: shipping-config
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "100m"
+        memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping
+spec:
+  selector:
+    name: shipping
+    tier: app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
