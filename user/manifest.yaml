@@ -5,7 +5,7 @@ metadata:
   name: user-config
 data:
   REDIS_HOST: "redis"
-  MONGO_URL: "mongodb://mongodb:80/catalogue"
+  MONGO_URL: "mongodb://mongodb:27017/catalogue"
 ---
 apiVersion: v1
 kind: Pod
