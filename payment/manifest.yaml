@@ -2,26 +2,27 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: shipping-config
+  name: payment-config
 data:
-  CART_ENDPOINT: "cart"
-  DB_HOST: "mysql"
+  CART_HOST: "cart:80"
+  USER_HOST: "user"
+  AMQP_HOST: "rabbitmq"
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: shipping
+  name: payment
   labels:
-    name: shipping
+    name: payment
     tier: app
 spec:
   containers:
-  - name: shipping
+  - name: payment
     imagePullPolicy: Always
-    image: techworldwithsiva/shipping:k8
+    image: techworldwithsiva/payment:v1
     envFrom:
     - configMapRef:
-        name: shipping-config
+        name: payment-config
     resources:
       requests:
         cpu: "100m"
@@ -33,10 +34,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: shipping
+  name: payment
 spec:
   selector:
-    name: shipping
+    name: payment
     tier: app
   ports:
     - protocol: TCP
